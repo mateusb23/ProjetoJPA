@@ -13,7 +13,11 @@ public class ProdutoDAO {
 		
 		try {
 			em.getTransaction().begin();
-			em.persist(produto);
+			if (produto.getId() == null) {
+				em.persist(produto);
+			} else {
+				em.merge(produto);
+			}
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			System.out.println(e);
