@@ -18,6 +18,8 @@ public class Produto {
 	@ManyToOne
 	private Categoria categoria;
 	
+	public Produto() { }
+	
 	public Integer getId() {
 		return id;
 	}
