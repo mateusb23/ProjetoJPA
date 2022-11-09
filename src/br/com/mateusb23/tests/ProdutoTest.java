@@ -45,10 +45,11 @@ public class ProdutoTest {
 		
 		for (Produto p: dao.findAll()) {
 			System.out.println();
-			System.out.println("Categoria; " + p.getCategoria().getDescricao());
+			System.out.println("Categoria: " + p.getCategoria().getDescricao());
 			System.out.println("Descrição: " + p.getDescricao());
 			System.out.println("Quantidade: " + p.getQuantidade());
-			System.out.println("Valor: " + p.getValor());
+			System.out.println("Valor por unidade: " + p.getValor());
+			System.out.println("Valor a ser pago: " + p.valorTotal());
 		}
 		
 		//dao.remove(1);
