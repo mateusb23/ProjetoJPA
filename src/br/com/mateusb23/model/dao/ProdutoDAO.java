@@ -65,4 +65,10 @@ public class ProdutoDAO {
 		return produtos;
 	}
 	
+	public Produto remove(Integer id) { 
+	
+	EntityManager em = new ConnectionFactory().getEntityManager();
+
+	}
+		
 }
