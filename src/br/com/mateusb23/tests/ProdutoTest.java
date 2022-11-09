@@ -44,6 +44,7 @@ public class ProdutoTest {
 		//System.out.println(produto);
 		
 		for (Produto p: dao.findAll()) {
+			
 			System.out.println();
 			System.out.println("Categoria; " + p.getCategoria().getDescricao());
 			System.out.println("Descrição: " + p.getDescricao());
