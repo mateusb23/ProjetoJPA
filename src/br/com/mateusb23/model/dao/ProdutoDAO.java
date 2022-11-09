@@ -10,9 +10,9 @@ import br.com.mateusb23.model.bean.Produto;
 public class ProdutoDAO {
 
 	public Produto save(Produto produto) {
-		
+
 		EntityManager em = new ConnectionFactory().getEntityManager();
-		
+
 		try {
 			em.getTransaction().begin();
 			if (produto.getId() == null) {
@@ -22,53 +22,72 @@ public class ProdutoDAO {
 			}
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			System.out.println(e);
+			System.err.println(e);
 			em.getTransaction().rollback();
 		} finally {
 			em.close();
 		}
-		
+
 		return produto;
 	}
-	
+
 	public Produto findById(Integer id) {
-		
+
 		EntityManager em = new ConnectionFactory().getEntityManager();
-		
+
 		Produto produto = null;
-		
+
 		try {
 			produto = em.find(Produto.class, id); 
 		} catch (Exception e) {
-			System.out.println(e);	
+			System.err.println(e);	
 		} finally {
 			em.close();
 		}
-	
+
 		return produto;
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	public List<Produto> findAll() {
-		
+
 		EntityManager em = new ConnectionFactory().getEntityManager();
-		
+
 		List<Produto> produtos = null;
-		
+
 		try {
-			produtos = em.createQuery("from Produto produto").getResultList();
+			produtos = em.createQuery("from Produto").getResultList();
 		} catch (Exception e) {
-			System.out.println(e);
+			System.err.println(e);
 		} finally {
 			em.close();
 		}
-		
+
 		return produtos;
 	}
-	
-	public Produto remove(Integer id) { 
-	
-	EntityManager em = new ConnectionFactory().getEntityManager();
 
+	public Produto remove(Integer id) { 
+
+		EntityManager em = new ConnectionFactory().getEntityManager();
+
+		Produto produto = null;
+		
+		try {
+			produto = em.find(Produto.class, id);
+			
+			em.getTransaction().begin();
+			em.remove(produto);
+			em.getTransaction().commit();
+			
+		} catch (Exception e) {
+			System.err.println(e);
+			em.getTransaction().rollback();
+		} finally {
+			em.close();
+		}
+
+		return produto;
 	}
 		
 }
+

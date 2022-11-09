@@ -22,7 +22,7 @@ public class CategoriaDAO {
 			}
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			System.out.println(e);
+			System.err.println(e);
 			em.getTransaction().rollback();
 		} finally {
 			em.close();
@@ -40,7 +40,7 @@ public class CategoriaDAO {
 		try {
 			categoria = em.find(Categoria.class, id);
 		} catch (Exception e) {
-			System.out.println(e);
+			System.err.println(e);
 		} finally {
 			em.close();
 		}
@@ -48,6 +48,7 @@ public class CategoriaDAO {
 		return categoria;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Categoria> findAll() {
 		
 		EntityManager em = new ConnectionFactory().getEntityManager();
@@ -55,9 +56,9 @@ public class CategoriaDAO {
 		List<Categoria> categorias = null;
 		
 		try {
-			categorias = em.createQuery("from Categoria c").getResultList();
+			categorias = em.createQuery("from Categoria").getResultList();
 		} catch (Exception e) {
-			System.out.println(e);
+			System.err.println(e);
 		} finally {
 			em.close();
 		}
@@ -79,7 +80,7 @@ public class CategoriaDAO {
 			em.getTransaction().commit();
 			
 		} catch (Exception e) {
-			System.out.println(e);
+			System.err.println(e);
 			em.getTransaction().rollback();
 		} finally {
 			em.close();

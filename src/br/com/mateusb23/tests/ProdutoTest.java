@@ -51,6 +51,8 @@ public class ProdutoTest {
 			System.out.println("Valor: " + p.getValor());
 		}
 		
+		//dao.remove(1);
+		
 	}
 	
 }

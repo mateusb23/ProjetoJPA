@@ -19,7 +19,7 @@ public class Produto {
 	private Categoria categoria;
 	
 	public Produto() { }
-	
+
 	public Integer getId() {
 		return id;
 	}
