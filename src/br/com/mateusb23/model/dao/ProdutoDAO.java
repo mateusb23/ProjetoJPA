@@ -1,5 +1,7 @@
 package br.com.mateusb23.model.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import br.com.mateusb23.connection.ConnectionFactory;
@@ -27,6 +29,40 @@ public class ProdutoDAO {
 		}
 		
 		return produto;
+	}
+	
+	public Produto findById(Integer id) {
+		
+		EntityManager em = new ConnectionFactory().getEntityManager();
+		
+		Produto produto = null;
+		
+		try {
+			produto = em.find(Produto.class, id); 
+		} catch (Exception e) {
+			System.out.println(e);	
+		} finally {
+			em.close();
+		}
+	
+		return produto;
+	}
+	
+	public List<Produto> findAll() {
+		
+		EntityManager em = new ConnectionFactory().getEntityManager();
+		
+		List<Produto> produtos = null;
+		
+		try {
+			produtos = em.createQuery("from Produto produto").getResultList();
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			em.close();
+		}
+		
+		return produtos;
 	}
 	
 }
