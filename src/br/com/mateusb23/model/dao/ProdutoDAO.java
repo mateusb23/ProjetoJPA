@@ -22,7 +22,7 @@ public class ProdutoDAO {
 			}
 			em.getTransaction().commit();
 		} catch (Exception e) {
-			System.err.println(e);
+			e.printStackTrace();
 			em.getTransaction().rollback();
 		} finally {
 			em.close();
@@ -40,7 +40,7 @@ public class ProdutoDAO {
 		try {
 			produto = em.find(Produto.class, id); 
 		} catch (Exception e) {
-			System.err.println(e);	
+			e.printStackTrace();	
 		} finally {
 			em.close();
 		}
@@ -58,7 +58,7 @@ public class ProdutoDAO {
 		try {
 			produtos = em.createQuery("from Produto").getResultList();
 		} catch (Exception e) {
-			System.err.println(e);
+			e.printStackTrace();
 		} finally {
 			em.close();
 		}
@@ -80,7 +80,7 @@ public class ProdutoDAO {
 			em.getTransaction().commit();
 			
 		} catch (Exception e) {
-			System.err.println(e);
+			e.printStackTrace();
 			em.getTransaction().rollback();
 		} finally {
 			em.close();
